@@ -43,7 +43,7 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
   DWORD df = GetCurrentDirectory(cwd, bufferSize);
   if (df == 0){
     printf("Failure\n");
-    return 1;
+    return (LPVOID)1;
   }
   printf(cwd);
   return lpOut; // Success
