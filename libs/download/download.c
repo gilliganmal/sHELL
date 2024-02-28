@@ -35,8 +35,8 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
     return (LPVOID)1; // Error code for invalid arguments
   }
   // // your answer here
-  char* url = argv[0];
-  char* path = argv[1];
+  TCHAR url = argv[0];
+  TCHAR path = argv[1];
   HRESULT dl = URLDownloadToFileW(NULL, url, path, 0, NULL);
   if(dl == S_OK) {
       return (LPVOID)1; // Success
