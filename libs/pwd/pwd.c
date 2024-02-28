@@ -40,6 +40,12 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
     return 1; // Error code for memory allocation failure
   }
   // // your answer here
+  DWORD df = GetCurrentDirectory(cwd, bufferSize);
+  if (df == 0){
+    printf("Failure\n");
+    return 1;
+  }
+  printf(cwd);
   return lpOut; // Success
 }
 
