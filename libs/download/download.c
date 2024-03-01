@@ -2,6 +2,7 @@
 #include "../include/sHELL.h"
 #include "errhandlingapi.h"
 #include <windows.h>
+//#include <wchar.h>
 
 const char Name[] = "download";
 const char Help[] =
@@ -19,7 +20,9 @@ __declspec(dllexport) VOID CommandCleanup() {
   }
 }
 // initialization code
-__declspec(dllexport) BOOL CommandInit(InternalAPI *lpCore) { core = lpCore; }
+__declspec(dllexport) BOOL CommandInit(InternalAPI *lpCore) { 
+    core = lpCore;
+    return TRUE; }
 
 // Exported function - Name
 __declspec(dllexport) const char *CommandNameA() { return Name; }
@@ -35,14 +38,18 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
     return (LPVOID)1; // Error code for invalid arguments
   }
   // // your answer here
-  TCHAR url = argv[0];
-  TCHAR path = argv[1];
-  HRESULT dl = URLDownloadToFileW(NULL, url, path, 0, NULL);
+  const char* url = argv[1];
+  const char* filePath = argv[2];
+  core->wprintf(L"downloading %s to %s\n", url, filePath);
+
+
+  HRESULT dl = URLDownloadToFileA(NULL, url, filePath, 0, NULL);
   if(dl == S_OK) {
-      return (LPVOID)1; // Success
+    core->wprintf(L"Sucess\n");
+    return (LPVOID)1; // Success
   } else {
     core->wprintf(L"Error Downloading File.\n%s",dl);
-     return (LPVOID)0; // fail :( 
+    return (LPVOID)0; // fail :( 
   }
 }
 

@@ -38,7 +38,7 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
     return NULL;
   }
   // // your answer here
-  DWORD num = atoi(argv[1]);
+  DWORD num = StrToIntA(argv[1]);
   Sleep(num);
   return (LPVOID)1;
 }
