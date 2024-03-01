@@ -45,7 +45,7 @@ __declspec(dllexport) LPVOID CommandRunA(int argc, char **argv) {
     core->wprintf(L"Failure\n");
     return (LPVOID)1;
   }
-  core->wprintf(L"%s", cwd);
+  core->wprintf(L"%s\n", cwd);
   return lpOut; // Success
 }
 
